@@ -25,6 +25,14 @@ inevitably ends up in draw.There is an upgrade of this well-known game that's ca
 The project uses C# language.WPF is used to implement Windows desktop application.MSSQL database is used to store user data;Entity Framework is used as ORM to 
 increase development speed abstract from the database relational represenation.
 #### 2.2. User Interfaces <a name="2.2"></a>
+- Login/Register initial screen
+  ![Login/Register initial screen](https://github.com/VladislavTikh/TicTacToe/blob/master/Mockups/LoginScreen.png)
+- Rules Screen
+  ![Rules Screen](https://github.com/VladislavTikh/TicTacToe/blob/master/Mockups/RulesScreen.png)
+- User Info
+  ![User Info](https://github.com/VladislavTikh/TicTacToe/blob/master/Mockups/UserInfoScreen.png) 
+- Game Screen
+  ![Game Screen](https://github.com/VladislavTikh/TicTacToe/blob/master/Mockups/GameScreen.png)
 
 #### 2.3. User Characteristics <a name="2.3"></a>
 The target audience:
