@@ -18,8 +18,7 @@
  5. [Analogues](#5) <br>
  
  ### 1. Introduction <a name="1"></a>
-There are plenty of mobile and desktop tictactoe applications that allow you to play with bots or human opponent. Regular tictactoe game is quite simple and doesn't require you to think about your moves a lot, all possilbe moves have already been calculated and game is in "Draw death" position right now. If both players play perfect game it 
-inevitably ends up in draw.There is an upgrade of this well-known game that's called Ultimate(super) tic-tac-toe that requires much more attention and effort to win the game. It's hard to precalculate the outcome of the game and that brings new interest in gameplay.This gamemode poorly developed and existing applications don't provide appropriate comfort level. Web applications are full of advertising and have poor user experience. Ultimate TicTacToe is the application with conventient interface and simple logic.
+My project is a desktop application that allows users to play Ultimate Tic-Tac-Toe (upgrade of well-known tic-tac-toe game) game with possibility to save your perosnal data. Ultimate TicTacToe is the application with conventient interface and simple logic.
 
 ### 2. User Requirements <a name="2"></a>
 #### 2.1. Software Interfaces <a name="2.1"></a>
