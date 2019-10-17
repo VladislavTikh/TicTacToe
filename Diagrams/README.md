@@ -1,129 +1,108 @@
 # UML Диаграммы
-1. [Диаграмма прецедентов](#1)<br>
-1.1 [Актёры](#1.1)<br>
-1.2 [Варианты использования](#1.2)<br>
-1.2.1 [Регистрация](#1.2.1)<br>
-1.2.2 [Вход в систему](#1.2.2)<br>
-1.2.3 [Просмотр продуктов](#1.2.3)<br>
-1.2.4 [Просмотр детальной информации о продукте](#1.2.4)<br>
-1.2.5 [Создание заказа](#1.2.5)<br>
-1.2.6 [Переход на одну из последних страниц продуктов](#1.2.6)<br>
-2. [Диаграммы активности](#2)<br>
-2.1 [Регистрация](#2.1)<br>
-2.2 [Вход в систему](#2.2)<br>
-2.3 [Просмотр всех продуктов](#2.3)<br>
-2.4 [Просмотр детальной информации о продукте](#2.4)<br>
-2.5 [Создание заказа](#2.5)<br>
-2.6 [Переход на одну из последних страниц продуктов](#2.6)<br>
-3. [Диаграмма последовательности](#3)
+1. [Use Case](#1)<br>
+1.1 [Actors](#1.1)<br>
+1.2 [Flow of events](#1.2)<br>
+1.2.1 [Registration](#1.2.1)<br>
+1.2.2 [Login](#1.2.2)<br>
+1.2.3 [Click cell](#1.2.3)<br>
+1.2.4 [View user information](#1.2.4)<br>
+1.2.5 [Configure theme settings](#1.2.5)<br>
+2. [Activity Diagram](#2)<br>
+2.1 [Registration](#2.1)<br>
+2.2 [Game Activity](#2.2)<br>
+2.3 [Cell click activity](#2.3)<br>
+3. [Sequence Diagram](#3)
+4. [State Diagram](#4)
+5. [Class Diagram](#5)
+6. [Component Diagram](#6)
+7. [Deployment Diagram](#7)
 
-### 1. Диаграмма прецедентов<a name="1"></a>
-Диаграмма прецедентов представляет собой следующую диаграмму:
-![Use Case](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/UseCase/UseCase.png)
-#### 1.1 Актёры<a name="1.1"></a>
-Актёр | Описание
+
+
+### 1. Use Case Diagram<a name="1"></a>
+Use Case Diagram of Tic-Tac-Toe game:
+![Use Case](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/UseCase/UseCase.jpg)
+#### 1.1 Actors<a name="1.1"></a>
+Actors | Description
 --- | ---
-Покупатель|Человек, использующий приложение для просмотра продуктов, покупка недоступна до входа в систему.
-Зарегистрированный клиент|Человек, использующий приложение для покупки определенных товаров.
+Anonymous user|Person that use the application without authorization
+Registered user|Person that use the application in authorized way that provides user statistics.
 
-#### 1.2 Варианты использования<a name="1.2"></a>
-Примечание: при указании повторения дествия, происходит повторение действия варианта использования, в котором оно возникло.
-##### 1.2.1 Регистрация<a name="1.2.1"></a>
-**Описание.** Вариант использования "Регистрация" позволяет новому пользователю создать свою учетную запись в системе.
+#### 1.2 Flow of events<a name="1.2"></a>
+##### 1.2.1 Registration<a name="1.2.1"></a>
+**Describtion.** "Registration" provides to new user ability to store his personal achievments in the game and observe them in the game 
+Flow of events:
+1. User presses "Register" button on the Authorization screen
+2. User enters "Username", "Password" in required fields.
+4. Applications verifies data consistency and unique credentials.Error message when data is wrong.Return to the 2 step.
+5. User presses Register button.
+6. Application adds new user in the database
+7. End.
+##### 1.2.2 Login<a name="1.2.2"></a>
+**Описание.** "Login" provides user ability to login under existing credentials.
+Flow of events:
+1. User enters "Username", "Password" fields in the required fields.
+2. Application validates entered data according to the restrictions.
+3. User presses "Login" button on the Login screen.
+4. In case data is wrong return to the step 1
+5. Application authorizes the user and changes screen to MainActivity.
+6. End.
+##### 1.2.3 Cell on the board clicked<a name="1.2.3"></a>
+**Описание.**"Cell on the board clicked" allows user to make turn in the main game stage.
+Flow of events:
+1. User presses empty cell on one of the localboards.
+2. Application marks the cell accroring to the user mark.
+3. Application calculates the score on the board according to changes.
+4. End.
+Alternate thread А1:
+1. User clicks marked cell.
+2. The cell is disabled.
+3. User keeps the turn and return to step 1.
+4. End.
+##### 1.2.4 View User Information<a name="1.2.4"></a>
+**Описание.** "View User Information" allows authorized user observe personal game results.
+1. User presses on the User Info tab.
+2. Current screen is changed on User Info screen
+3. User can observe stats and records.
+4. End.
+##### 1.2.5 Configure theme settings<a name="1.2.5"></a> 
+**Описание.** "Configure theme settings" allows user to customize application theme settings
 Поток событий:
-1. Пользователь нажимает клавишу "Sign Up" на панели инструментов.
-2. Приложение переходит на страницу регистрации.
-3. Пользователь вводит "Username", "Email", "Password".
-4. Пользователь подтвержает пароль. Если пароли не совпадают, происходит уведомление пользователя об этом и повторение действия 4.
-5. Приложение проверяет валидность и уникальность данных. При неверных данных приложение показывает сообщение об ошибке, далее пользователь повторяет дейстия 3, 4.
-6. Пользователь нажимает клавишу "Save".
-7. Приложение добавляет нового пользователя в систему.
-8. Конец.
-##### 1.2.2 Вход в систему<a name="1.2.2"></a>
-**Описание.** Вариант использования "Вход в систему" позволяет пользователю авторизироваться в приложении.
-Поток событий:
-1. Пользователь нажимает клавишу "Login" на панели инструментов.
-2. Приложение переходит на страницу входа в систему.
-3. Пользователь вводит "Username" или "Email", "Password".
-4. Приложение проверяет соответствие введенных данных с базой данных. При неверных данных приложение выводит сообщение об ошбике, пользователь повторяет действие 4. 
-5. Пользователь нажимает клавишу "Login".
-6. Приложение авторизирует пользователя, при этом заменяя клавишу "Login" на "Logout".
-7. Конец.
-##### 1.2.3 Просмотр продуктов<a name="1.2.3"></a>
-**Описание.** Вариант использования "Просмотр продуктов" позволяет пользователю просмотривать все продукты, а также выполнять поиск и сортировку с данными продуктами.
-Поток событий:
-1. Пользователь нажимает клавишу "Products" на панели инструментов.
-2. Приложение переходит на станицу просмотра всех продуктов.
-3. Пользователь вводит данные в поле "Search". При данном действии выполняется альтернативный поток А1.
-4. Пользователь нажимает клавишу со значком сортировки. При данном дейтвии выполняется альтернативный поток А2.
-5. Конец.
-Альтернативный поток А1:
-1. Пользователь вводит данные в поле "Search".
-2. Приложение выполняет поиск по совпрадениям введных данных со списком продуктов.
-3. Приложение отображает результаты поиска на экране.
-4. Конец.
-Фльтенативный поток А2:
-1. Пользователь нажимает клавшишу со значком сортировки.
-2. Приложение выполняет сортировку продуктов в соответствии с выбраными порядком.
-3. Приложение отображает обновленный список продуктов на экране.
-4. Конец.
-##### 1.2.4 Просмотр детальной информации о продукте<a name="1.2.4"></a>
-**Описание.** Вариант использования "Просмотр детальной информации о продукте" позволяет пользователю просматривать подробную информация о продукте, а также добавлять продукт в корзину.
-1. Пользователь нажимает на определенный продукт. Если пользователь не авторизирован, происходит переход к варианту использования 1.2.2, действие 2.
-Поток событий:
-2. Приложение переходит на страницу детального просмотра выбранного продукта.
-3. Пользователь просматривает информацию о продукте.
-4. Пользователь нажимает клавишу "Add to cart". При данном действии выполняется альтернативный поток B1.
-5. Конец.
-Альтернативный поток В1:
-1. Пользователь нажимает клавишу "Add to cart".
-2. Пользователь выбирает поличество товара.
-3. Приложение добавляет текущий продуктс выбранным количеством в корзину.
-4. Конец.
-##### 1.2.5 Создание заказа<a name="1.2.5"></a> 
-**Описание.** Вариант использования "Создание заказа" позволяет пользователю оформить заказ по текущим продуктам в корзине.
-Поток событий:
-1. Пользователь нажимает клавишу со значком корзины на панели инструментов.
-2. Приложение переходит на страницу создания заказа.
-3. Пользователь просматривает продукты в корзине, если нужно, изменияет количество продуктов.
-4. Пользователь вводит "First Name", "Last Name", "Phone Number", "Address".
-5. Приложение проверяет валидность данных. При неверных данных происходит повторение действия 4. 
-6. Пользователь нажимает клавишу "Place order".
-7. Приложение создает заказ с выбранными продуктами и введенными данными.
-8. Конец.
-##### 1.2.6 Переход на одну из последних страниц продуктов<a name="1.2.6"></a>
-**Описание.** Вариант использования "Переход на одну из последних страниц продуктов" позволяет пользователь быстро переходить одну из трех последних просмотренных страниц продуктов.
-Поток событий:
-1. Приложение отображает (в том случае, если пользователь посещал старницы продуктов) ссылки в виде кратого описания 3 последних просмотренных продуктов внизу экрана.
-2. Пользователь нажимает на нужный продукт.
-3. Приложение переходит на страницу просмотра детальной информации о выбранном продукте.
-4. Конец.
-### 2. Диаграммы активности<a name="2"></a>
-##### 2.1 Регистрация<a name="2.1"></a> 
-При заполнении форм данных происходит их валидация. При неверных данных выводится сообщение об ошибке с требованием повторить действие, иначе происходит регистрация нового пользователя и переход на страницу всех продуктов.
+1. Users presses Theme Settings tab on the MainActivity Screen.
+2. Current screen is changed on Theme setting screen.
+3. User can choose the theme he likes from provided.
+4. User chooses one theme.
+5. Application dynamically changes theme settings according to choice. 
+6. User leaves theme settings screen.
+8. End.
+### 2. Activity Diagram<a name="2"></a>
+##### 2.1 Registration<a name="2.1"></a> 
+When the user registers in application in case on valid data new entity in the database is created. If data is invalid user has to enter
+valid data once again.
+![Register activity](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Activity/RegistrationActivity.jpg)
+##### 2.2 Game Activity<a name="2.2"></a> 
+On every turn application calculates current game status and analyzes if there is a win condition. If cell is already marked user keeps the turn.
+![Game activity](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Activity/GameActivity.jpg)
+##### 2.3 Cell click activity <a name="2.3"></a> 
+On the game stage if the disabled cell is clicked user keeps the turn. In other case the cell is marked and turn changes.
+![Cell click activity](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Activity/CellActivity.jpg) 
+### 3. Sequence Diagram<a name="3"></a>
+Sequence Diagram of main options to use the application:
+![Sequence Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Sequence/SequenceDiagram.jpg)
+### 4. State Diagram<a name="4"></a>
+State Diagram to describe the cell behaviour when user interacts with it during the game stage.
+![State Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/State/StateDiagram.jpg)
+### 5. Class Diagram<a name="5"></a>
+Class diagram illustrates how the system is designed and how components interact with each other when the application is running.
+![Class Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Class/UML Tic-Tac-Toe.jpg)
+### 6. Component Diagram<a name="6"></a>
+Component diagram describes how components are wired and provides the abstraction to observe how data moves throught the application. 
+Ultimate Tic-Tac-Toe game is designed as WPF applicaiton that is highly adapted for MVVM architecture pattern. It has native databinding and provides easy tools for using it.
+![Component Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Component/Component.jpg)
+### 7. Deployment Diagram<a name="7"></a>
+All soft is stored and launched on the Windows OS.Database that stores user data would be stored on the application server that is deployed locally and hosts on the same PC that Desktop Client. That way it can track data of games that were played on that PC between two user. Both Client and Server should have .NET Framework 4.8 in order to launch required soft. Database woudl me managed by MSSQL DBMS so it is also should be deployed locally. Client should have application exe file in order to launch the application.
+![Deployment Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Deployment/Deployment.jpg)
 
-![Register activity](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Activity/Register.png)
-##### 2.2 Вход в систему<a name="2.2"></a> 
-При заполнении форм данных происходит их валидация. При неверных данных выводится сообщение об ошибке с требованием повторить действие, иначе происходит авторизация и переход на страницу всех продуктов.
 
-![Login activity](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Activity/Login.png)
-##### 2.3 Просмотр всех продуктов<a name="2.3"></a> 
-Пользователь просматривает продукты. Пользователь имеет возможность использовать поиск и сортировку принажатии соответствующих клавиш и ввода данных для поиска. При нажатии на продукт происходит переход на страницу детальной информации о продукте, при условии, что пользователь авторизован.
 
-![Product List activity](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Activity/ProductList.png)
-##### 2.4 Просмотр детальной информации о продукте<a name="2.4"></a>
-При нажатии на "Add to cart" происходит добавление продукта с выбранным количеством в корзину. Пользователь имеет возможность редактировать количество.
 
-![Product Details activity](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Activity/ProductDetails.png)
-##### 2.5 Создание заказа<a name="2.5"></a>
-При нажатии на значок корзины на панели инструментов происходит переход на страницу оформления заказа. Пользователь ввожит данные об оплате. Если неверные данные выводится сообщание об ошибке, иначе при нажатии "Place order" создается заказ.
-
-![Place Order activity](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Activity/PlaceOrder.png)
-##### 2.6 Переход на одну из последних страниц продуктов<a name="2.6"></a>
-При нажатии на один из продуктов, изображенных внизу страницы происходит переход на страницу соответствующего продукта.
-
-![Last Viewed activity](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Activity/LastViewed.png) 
-### 3. Диаграмма последовательности<a name="3"></a>
-Диаграмма последовательности основных вариантов использования представлена ниже:
-
-![Sequence Diagram](https://github.com/s1ovak/PhoneShop/blob/master/Diagrams/Sequence/Sequence.png)
