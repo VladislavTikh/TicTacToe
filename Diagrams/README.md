@@ -39,7 +39,7 @@ Flow of events:
 6. Application adds new user in the database
 7. End.
 ##### 1.2.2 Login<a name="1.2.2"></a>
-**Описание.** "Login" provides user ability to login under existing credentials.
+**Describtion.** "Login" provides user ability to login under existing credentials.
 Flow of events:
 1. User enters "Username", "Password" fields in the required fields.
 2. Application validates entered data according to the restrictions.
@@ -48,7 +48,7 @@ Flow of events:
 5. Application authorizes the user and changes screen to MainActivity.
 6. End.
 ##### 1.2.3 Cell on the board clicked<a name="1.2.3"></a>
-**Описание.**"Cell on the board clicked" allows user to make turn in the main game stage.
+**Describtion.**"Cell on the board clicked" allows user to make turn in the main game stage.
 Flow of events:
 1. User presses empty cell on one of the localboards.
 2. Application marks the cell accroring to the user mark.
@@ -60,13 +60,13 @@ Alternate thread А1:
 3. User keeps the turn and return to step 1.
 4. End.
 ##### 1.2.4 View User Information<a name="1.2.4"></a>
-**Описание.** "View User Information" allows authorized user observe personal game results.
+**Describtion.** "View User Information" allows authorized user observe personal game results.
 1. User presses on the User Info tab.
 2. Current screen is changed on User Info screen
 3. User can observe stats and records.
 4. End.
 ##### 1.2.5 Configure theme settings<a name="1.2.5"></a> 
-**Описание.** "Configure theme settings" allows user to customize application theme settings
+**Describtion.** "Configure theme settings" allows user to customize application theme settings
 Поток событий:
 1. Users presses Theme Settings tab on the MainActivity Screen.
 2. Current screen is changed on Theme setting screen.
