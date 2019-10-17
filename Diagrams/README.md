@@ -94,7 +94,7 @@ State Diagram to describe the cell behaviour when user interacts with it during 
 ![State Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/State/StateDiagram.jpg)
 ### 5. Class Diagram<a name="5"></a>
 Class diagram illustrates how the system is designed and how components interact with each other when the application is running.
-![Class Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Class/UML Tic-Tac-Toe.jpg)
+![Class Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Class/Tic-Tac-Toe.jpg)
 ### 6. Component Diagram<a name="6"></a>
 Component diagram describes how components are wired and provides the abstraction to observe how data moves throught the application. 
 Ultimate Tic-Tac-Toe game is designed as WPF applicaiton that is highly adapted for MVVM architecture pattern. It has native databinding and provides easy tools for using it.
