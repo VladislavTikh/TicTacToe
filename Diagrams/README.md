@@ -20,13 +20,20 @@
 
 
 ### 1. Use Case Diagram<a name="1"></a>
-Use Case Diagram of Tic-Tac-Toe game:
-![Use Case](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/UseCase/UseCase.jpg)
+Use Case Diagrams of Tic-Tac-Toe game:
+#### Unauthorized User
+![Use Case](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/UseCase/UseCaseAnonymous.jpg)
+#### Regular User
+![Use Case](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/UseCase/UseCaseUser.jpg)
+#### Registered User Features
+![Use Case](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/UseCase/UseCaseRegisteredUser.jpg)
 #### 1.1 Actors<a name="1.1"></a>
 Actors | Description
 --- | ---
 Anonymous user|Person that use the application without authorization
 Registered user|Person that use the application in authorized way that provides user statistics.
+Opponent|Person that plays the same game against you.
+Database|Local storage that saves users personal info.
 
 #### 1.2 Flow of events<a name="1.2"></a>
 ##### 1.2.1 Registration<a name="1.2.1"></a>
@@ -87,8 +94,13 @@ On every turn application calculates current game status and analyzes if there i
 On the game stage if the disabled cell is clicked user keeps the turn. In other case the cell is marked and turn changes.
 ![Cell click activity](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Activity/CellActivity.jpg) 
 ### 3. Sequence Diagram<a name="3"></a>
-Sequence Diagram of main options to use the application:
-![Sequence Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Sequence/SequenceDiagram.jpg)
+Sequence Diagrams of main options to use the application:
+### Change Theme
+![Sequence Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Sequence/ChangeTheme.jpg)
+### Game Stage
+![Sequence Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Sequence/GameStage.jpg)
+### Tabs Options
+![Sequence Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/Sequence/Tabs.jpg)
 ### 4. State Diagram<a name="4"></a>
 State Diagram to describe the cell behaviour when user interacts with it during the game stage.
 ![State Diagram](https://github.com/VladislavTikh/TicTacToe/blob/master/Diagrams/State/StateDiagram.jpg)
