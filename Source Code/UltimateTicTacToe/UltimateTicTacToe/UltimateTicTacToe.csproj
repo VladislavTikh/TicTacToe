@@ -201,7 +201,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationPage.cs" />
-    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Helpers\PasswordBoxAssistant.cs" />
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>

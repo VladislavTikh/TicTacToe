@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace DAL.GameModels
 {
-    public class GlobalBoard
+    public class GlobalBoard:BaseBoard
     {
-        public int Rows { get; set; } = 3;
-        public int Columns { get; set; } = 3;
 
         private ObservableCollection<LocalBoard> _boards;
+
+        public GlobalBoard():base()
+        {}
+
         public ObservableCollection<LocalBoard> Boards
         {
             get

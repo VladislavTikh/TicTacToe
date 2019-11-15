@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAL.GameModels;
 
 namespace DAL.IService
 {
-    public class IGameService
+    public interface IGameService
     {
+        LocalBoard GetActiveBoard(GlobalBoard board, BoardCell cell);
+
+        GameRoles ChangeTurn();
+
+        Outcome ProcessGameStage(GlobalBoard board, BoardCell cell);
 
     }
 }

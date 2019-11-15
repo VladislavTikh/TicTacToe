@@ -13,7 +13,8 @@
       TextElement.FontWeight="Regular"
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
-      Background="{DynamicResource MaterialDesignPaper}">
+      Background="{DynamicResource MaterialDesignPaper}"
+      x:Name="root">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Width="600">
             <Grid x:Name="Container">
@@ -27,7 +28,7 @@
                         <DataTemplate>
                             <Border  BorderThickness="5" BorderBrush="WhiteSmoke">
                                 <Grid x:Name="LocalBoard" Width="175" >
-                                    <ItemsControl x:Name="Cell" ItemsSource="{Binding Path=Cells}">
+                                    <ItemsControl x:Name="Cell"  ItemsSource="{Binding Path=Cells}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate >
                                                 <UniformGrid Rows="{Binding Path=Rows}" Columns="{Binding Path=Columns}"/>
@@ -36,8 +37,8 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Button Style="{StaticResource CellButton}" Content="{Binding Path=Sign}" 
-                                            IsEnabled="{Binding Path=CanSelect}"
-                                            />
+                                                        Command="{Binding ElementName=root, Path=DataContext.CellPressCommand}" CommandParameter="{Binding .}"
+                                                />
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
@@ -49,7 +50,6 @@
             </Grid>
         </StackPanel>
         <StackPanel  HorizontalAlignment="Right" Width="200">
-        
             <Button Width="100" Margin="0,200,0,0" Content="Restart"></Button>
         </StackPanel>
     </Grid>

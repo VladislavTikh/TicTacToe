@@ -13,6 +13,7 @@ namespace UltimateTicTacToe.ViewModels
         {
             Users = new List<User> { currentUser };
             CurrentUser = currentUser;
+            GitHubProfile = "https://github.com/VladislavTikh/TicTacToe";
         }
 
         public User CurrentUser { get; set; }

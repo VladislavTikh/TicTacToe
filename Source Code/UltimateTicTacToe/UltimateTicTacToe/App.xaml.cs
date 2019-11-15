@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DAL.Context;
+using DAL.IService;
 using DAL.Models;
 using DAL.Service;
 using Microsoft.AspNet.Identity;
@@ -28,6 +29,7 @@ namespace UltimateTicTacToe
             Container.RegisterType<Microsoft.AspNet.Identity.EntityFramework.UserStore<User>>(new InjectionConstructor(new UserDbContext()));
             Container.RegisterType(typeof(UserManager));     
             Container.RegisterType<IUserService, UserService>();
+            Container.RegisterType<IGameService, GameService>();
             Container.RegisterType<IValidator, AuthorizationValidator>();
             Container.RegisterType(typeof(RegisterVM));
             Container.RegisterType(typeof(LoginVM));

@@ -1,13 +1,11 @@
 ﻿using DAL;
+using DAL.Commands;
 using DAL.Service;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using UltimateTicTacToe.Commands;
 using UltimateTicTacToe.Validators;
 
 namespace UltimateTicTacToe.ViewModels
