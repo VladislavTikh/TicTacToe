@@ -15,6 +15,28 @@
       TextOptions.TextRenderingMode="Auto"
       Background="{DynamicResource MaterialDesignPaper}"
       x:Name="root">
+    <Page.Resources>
+        <TextBlock x:Name="XBlock" Text="X" x:Key="XTextBlock"></TextBlock>
+        <TextBlock x:Name="OBlock" Text="O" x:Key="OTextBlock"></TextBlock>
+        <DoubleAnimation x:Key="FadeOut" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:4"/>
+        <DoubleAnimation x:Key="FadeIn" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:4"/>
+        <Style x:Key="GridStyle" TargetType="UniformGrid">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsBoardPlayed}" Value="False" >
+                    <Setter Property="TextBlock.Text" Value="X"/>
+                    <Setter Property="TextBlock.Foreground" Value="BurlyWood"/>
+
+                    <!--<DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <StaticResource ResourceKey="FadeOut"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>-->
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <StackPanel HorizontalAlignment="Center" Width="600">
             <Grid x:Name="Container">
@@ -31,7 +53,7 @@
                                     <ItemsControl x:Name="Cell"  ItemsSource="{Binding Path=Cells}">
                                         <ItemsControl.ItemsPanel>
                                             <ItemsPanelTemplate >
-                                                <UniformGrid Rows="{Binding Path=Rows}" Columns="{Binding Path=Columns}"/>
+                                                <UniformGrid Style="{StaticResource GridStyle}" Rows="{Binding Path=Rows}" Columns="{Binding Path=Columns}"/>
                                             </ItemsPanelTemplate>
                                         </ItemsControl.ItemsPanel>
                                         <ItemsControl.ItemTemplate>

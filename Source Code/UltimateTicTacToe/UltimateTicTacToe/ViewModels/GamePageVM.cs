@@ -43,9 +43,13 @@ namespace UltimateTicTacToe.ViewModels
                           default:
                               break;
                       }
+                      var playedBoard = _gameService.GetPlayedBoard(GlobalBoard, cell);
+                      var localOutcome = _gameService.ProcessGameStage(playedBoard, cell);
+                      if(localOutcome != Outcome.Continue)
+                      {
+                          _gameService.ProcessGameStage(GlobalBoard,cell);
+                      }
                       _activeBoard = _gameService.GetActiveBoard(GlobalBoard, cell);
-                      var outcome=_gameService.ProcessGameStage(GlobalBoard, cell);
-
                   },
                   obj =>
                   {

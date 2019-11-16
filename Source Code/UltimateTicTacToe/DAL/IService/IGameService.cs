@@ -8,7 +8,9 @@ namespace DAL.IService
 
         GameRoles ChangeTurn();
 
-        Outcome ProcessGameStage(GlobalBoard board, BoardCell cell);
+        Outcome ProcessGameStage(BaseBoard board, BoardCell cell, Outcome outcome = Outcome.Continue);
+
+        LocalBoard GetPlayedBoard(GlobalBoard board, BoardCell cell);
 
     }
 }

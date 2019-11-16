@@ -12,17 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UltimateTicTacToe.ViewModels;
 
-namespace UltimateTicTacToe.Windows
+namespace UltimateTicTacToe.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для ThemeSetting.xaml
+    /// Логика взаимодействия для ThemeSettingsPage.xaml
     /// </summary>
-    public partial class ThemeSetting : Page
+    public partial class ThemeSettingsPage : Page
     {
-        public ThemeSetting()
+
+        public ThemeSettingsPage()
         {
+            var tsVM = new ThemeSettingsVM();
             InitializeComponent();
+            DataContext = tsVM;
         }
     }
 }

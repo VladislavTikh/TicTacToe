@@ -1,11 +1,13 @@
 ﻿using DAL.Commands;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DAL.GameModels
 {
-    public class LocalBoard:BaseBoard
+    public class LocalBoard:BaseBoard,INotifyPropertyChanged
     {
         
         private ObservableCollection<BoardCell> _cells;
@@ -30,6 +32,8 @@ namespace DAL.GameModels
             {
                 _IsBoardPlayed = value;
                 Cells.ToList().ForEach(x => x.CanSelect = false);
+                OnPropertyChanged();
+                
             }
         }
     }

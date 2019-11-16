@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace DAL.GameModels
 {
-    public abstract class BaseBoard
+    public abstract class BaseBoard : INotifyPropertyChanged
     {
         public BaseBoard()
         {
@@ -24,8 +21,23 @@ namespace DAL.GameModels
 
         protected bool _IsBoardPlayed;
 
-        public virtual bool IsBoardPlayed { get; set; }
+        public virtual bool IsBoardPlayed
+        {
+            get { return _IsBoardPlayed; }
+            set
+            {
+                _IsBoardPlayed = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string WinnerSign { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

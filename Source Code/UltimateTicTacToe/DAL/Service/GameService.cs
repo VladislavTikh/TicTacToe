@@ -26,28 +26,39 @@ namespace DAL.Service
             return passedRole;
         }
 
-        public Outcome ProcessGameStage(GlobalBoard board, BoardCell cell)
+        public Outcome ProcessGameStage(BaseBoard board, BoardCell cell, Outcome outcome=Outcome.Continue)
         {
-            var currentBoard = GetPlayedBoard(board, cell);
-            var cellIndex = currentBoard.Cells.ToList().IndexOf(cell);
-            var positions = GetColumnRowPosition(cellIndex, currentBoard.Columns);
-            var rowIndex = positions.Item1;
-            var columnIndex = positions.Item2;
-            var point = CurrentRole == GameRoles.Me ? 1 : -1;
-            UpdateBoardScore(currentBoard, rowIndex, columnIndex, point);
-            var result = CheckForWin(currentBoard);
-            if (result != Outcome.Continue)
+            switch(board)
             {
-                var localBoardIndex = board.Boards.ToList().IndexOf(currentBoard);
-                var localBoardPositions = GetColumnRowPosition(localBoardIndex, board.Columns);
-                var localBoardRowIndex = localBoardPositions.Item1;
-                var localBoardColumnIndex = localBoardPositions.Item2;
-                var globalPoint = (result == Outcome.Cross) ? 1 : -1;
-                if (result == Outcome.Draw) globalPoint = 0;
-                UpdateBoardScore(board, localBoardRowIndex, localBoardColumnIndex, globalPoint);
-                return CheckForWin(board);
+                case LocalBoard lb:
+                {                        
+                    var cellIndex = ((LocalBoard)board).Cells.ToList().IndexOf(cell);
+                    var positions = GetColumnRowPosition(cellIndex, board.Columns);
+                    var rowIndex = positions.Item1;
+                    var columnIndex = positions.Item2;
+                    var point = CurrentRole == GameRoles.Me ? 1 : -1;
+                    UpdateBoardScore(board, rowIndex, columnIndex, point);
+                    return CheckForWin(board);
+                }
+                case GlobalBoard gb:
+                    var currentBoard = GetPlayedBoard((GlobalBoard)board, cell);
+                    var localBoardIndex = ((GlobalBoard)board).Boards.ToList().IndexOf(currentBoard);
+                    var localBoardPositions = GetColumnRowPosition(localBoardIndex, board.Columns);
+                    var localBoardRowIndex = localBoardPositions.Item1;
+                    var localBoardColumnIndex = localBoardPositions.Item2;
+                    var globalPoint = (outcome == Outcome.Cross) ? 1 : -1;
+                    if (outcome == Outcome.Draw) globalPoint = 0;
+                    UpdateBoardScore(board, localBoardRowIndex, localBoardColumnIndex, globalPoint);
+                    return CheckForWin(board);
+                default:
+                    break;
             }
-            return Outcome.Continue;
+            return outcome;
+        }
+
+        public void ProcessEndStage(BaseBoard board)
+        {
+            throw new NotImplementedException();
         }
 
         private void UpdateBoardScore(BaseBoard board, int row, int column, int point)
@@ -106,7 +117,7 @@ namespace DAL.Service
             return Tuple.Create(rowIndex, columnIndex);
         }
 
-        private LocalBoard GetPlayedBoard(GlobalBoard board, BoardCell cell)
+        public LocalBoard GetPlayedBoard(GlobalBoard board, BoardCell cell)
         {
             return board.Boards.Where(x => x.Cells.Contains(cell)).FirstOrDefault();
 

@@ -38,7 +38,7 @@
         <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage.Page, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010">
             
         </Frame>
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF5C99D6">
+        <Grid Height="60" VerticalAlignment="Top" Background="{DynamicResource FooterColorResource}">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
@@ -56,7 +56,7 @@
             </StackPanel>
             <TextBlock HorizontalAlignment="Center" Text="{Binding Path=CurrentPage.PageName}"  VerticalAlignment="Center" FontSize="22"/>
         </Grid>
-        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="#FF31577E">
+        <Grid x:Name="GridMenu" Width="70" HorizontalAlignment="Left" Background="{DynamicResource SideMenuColorResource}">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="#FFAEAEAE"/>
             </Grid.Effect>

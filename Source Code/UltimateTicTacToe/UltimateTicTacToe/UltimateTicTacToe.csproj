@@ -211,9 +211,13 @@
     <Compile Include="Pages\RulesPage.xaml.cs">
       <DependentUpon>RulesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ThemeSettingsPage.xaml.cs">
+      <DependentUpon>ThemeSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\GamePageVM.cs" />
     <Compile Include="ViewModels\ProfilePageVM.cs" />
     <Compile Include="ViewModels\RulesPageVM.cs" />
+    <Compile Include="ViewModels\ThemeSettingsVM.cs" />
     <Compile Include="Windows\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>
     </Compile>
@@ -226,9 +230,6 @@
     <Compile Include="ViewModels\MainWindowVM.cs" />
     <Compile Include="ViewModels\PageVM.cs" />
     <Compile Include="ViewModels\RegisterVM.cs" />
-    <Compile Include="Pages\ThemeSettingsPage.xaml.cs">
-      <DependentUpon>ThemeSettingsPage.xaml</DependentUpon>
-    </Compile>
     <Page Include="Pages\GamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RulesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ThemeSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -261,10 +266,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Windows\Registration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\ThemeSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

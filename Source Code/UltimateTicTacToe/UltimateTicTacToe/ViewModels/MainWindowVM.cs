@@ -20,7 +20,7 @@ namespace UltimateTicTacToe.ViewModels
             {
                 new PageVM{PageName="Rules", PageIcon="Pencil", Page=new RulesPage()},
                 new PageVM{PageName="Profile", PageIcon="Pencil", Page=new Profile(CurrentUser)},
-                new PageVM{PageName="Theme Settings", PageIcon="Pencil"},
+                new PageVM{PageName="Theme Settings", PageIcon="Pencil", Page=new ThemeSettingsPage()},
                 new PageVM{PageName="Game Stage", PageIcon="Pencil", Page=new GamePage()},
 
             };
