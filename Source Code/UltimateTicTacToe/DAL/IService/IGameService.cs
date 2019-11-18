@@ -1,4 +1,6 @@
 ﻿using DAL.GameModels;
+using DAL.Service;
+using System.Threading.Tasks;
 
 namespace DAL.IService
 {
@@ -12,5 +14,10 @@ namespace DAL.IService
 
         LocalBoard GetPlayedBoard(GlobalBoard board, BoardCell cell);
 
+        void UpdateUserProfile(User user, Outcome outcome);
+
+        string GenerateGameText(Outcome outcome, bool isFinalStage);
+
+        string GenerateIcon(Outcome outcome);
     }
 }

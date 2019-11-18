@@ -38,21 +38,15 @@
         <Frame x:Name="FrameMain" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage.Page, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010">
             
         </Frame>
-        <Grid Height="60" VerticalAlignment="Top" Background="{DynamicResource FooterColorResource}">
+        <Grid MouseDown="Grid_MouseDown" Height="60" VerticalAlignment="Top" Background="{DynamicResource FooterColorResource}">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="VladislavTikh" VerticalAlignment="Center" FontSize="16"/>
-                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
-                    <StackPanel Width="150">
-                        <Button Content="Settings"/>
-                        <Button Content="Account"/>
-                        <Button Content="Help"/>
-                        <Separator/>
-                        <Button Content="Logout"/>
-                    </StackPanel>
-                </materialDesign:PopupBox>
+                <TextBlock Margin="0,0,20,0" Text="VladislavTikh" VerticalAlignment="Center" FontSize="16"/>
+                <Button Margin="0,0,10,0" x:Name="ButtonFechar" Style="{StaticResource MaterialDesignFloatingActionAccentButton}" Width="30" Height="30" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonFetchar_Click">
+                    <materialDesign:PackIcon Kind="Power"/>
+                </Button>
             </StackPanel>
             <TextBlock HorizontalAlignment="Center" Text="{Binding Path=CurrentPage.PageName}"  VerticalAlignment="Center" FontSize="22"/>
         </Grid>

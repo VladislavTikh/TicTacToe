@@ -26,20 +26,20 @@ namespace DAL.Service
             return passedRole;
         }
 
-        public Outcome ProcessGameStage(BaseBoard board, BoardCell cell, Outcome outcome=Outcome.Continue)
+        public Outcome ProcessGameStage(BaseBoard board, BoardCell cell, Outcome outcome = Outcome.Continue)
         {
-            switch(board)
+            switch (board)
             {
                 case LocalBoard lb:
-                {                        
-                    var cellIndex = ((LocalBoard)board).Cells.ToList().IndexOf(cell);
-                    var positions = GetColumnRowPosition(cellIndex, board.Columns);
-                    var rowIndex = positions.Item1;
-                    var columnIndex = positions.Item2;
-                    var point = CurrentRole == GameRoles.Me ? 1 : -1;
-                    UpdateBoardScore(board, rowIndex, columnIndex, point);
-                    return CheckForWin(board);
-                }
+                    {
+                        var cellIndex = ((LocalBoard)board).Cells.ToList().IndexOf(cell);
+                        var positions = GetColumnRowPosition(cellIndex, board.Columns);
+                        var rowIndex = positions.Item1;
+                        var columnIndex = positions.Item2;
+                        var point = CurrentRole == GameRoles.Opponent ? 1 : -1;
+                        UpdateBoardScore(board, rowIndex, columnIndex, point);
+                        return CheckForWin(board);
+                    }
                 case GlobalBoard gb:
                     var currentBoard = GetPlayedBoard((GlobalBoard)board, cell);
                     var localBoardIndex = ((GlobalBoard)board).Boards.ToList().IndexOf(currentBoard);
@@ -54,11 +54,6 @@ namespace DAL.Service
                     break;
             }
             return outcome;
-        }
-
-        public void ProcessEndStage(BaseBoard board)
-        {
-            throw new NotImplementedException();
         }
 
         private void UpdateBoardScore(BaseBoard board, int row, int column, int point)
@@ -123,5 +118,62 @@ namespace DAL.Service
 
         }
 
+        public void UpdateUserProfile(User user, Outcome outcome)
+        {
+            switch (outcome)
+            {
+                case Outcome.Cross:
+                    user.Wins++;
+                    user.Score += 10;
+                    break;
+                case Outcome.Nought:
+                    user.Loses++;
+                    break;
+                default:
+                    break;
+            }
+            if (user.Loses == 0)
+                user.Winrate = 100;
+            else
+            user.Winrate = user.Wins * 100 / (user.Wins + user.Loses);
+        }
+
+        public string GenerateGameText(Outcome outcome, bool isFinalStage)
+        {
+            var text = "heh";
+            switch (outcome)
+            {
+                case Outcome.Cross:
+                    text = isFinalStage ? "Congratulations, you won!" : "X";
+                    break;
+                case Outcome.Nought:
+                    text = isFinalStage ? "Unfortunately, you lost:(" : "O";
+                    break;
+                case Outcome.Draw:
+                    text = isFinalStage ? "It's a draw" : "-";
+                    break;
+                default:
+                    break;
+            }
+            return text;
+        }
+
+        public string GenerateIcon(Outcome outcome)
+        {
+            var text = "";
+            switch (outcome)
+            {
+                case Outcome.Cross:
+                    text = "Celebration";
+                    break;
+                case Outcome.Nought:
+                    text = "EmoticonSad";
+                    break;
+                case Outcome.Draw:
+                    text = "HandOkay";
+                    break;
+            }
+            return text;
+        }
     }
 }

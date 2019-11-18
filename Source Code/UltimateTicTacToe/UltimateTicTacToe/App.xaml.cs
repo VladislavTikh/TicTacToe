@@ -37,11 +37,10 @@ namespace UltimateTicTacToe
             Container.RegisterType(typeof(PageVM));
             Container.RegisterType(typeof(RulesPageVM));
             Container.RegisterType(typeof(GamePageVM));
-            Container.RegisterInstance(typeof(IUnityContainer), Container);
+            Container.RegisterType(typeof(ThemeSettingsVM));
+            Container.RegisterType(typeof(ProfilePageVM));
             Login loginWindow = Container.Resolve<Login>();
-            Registration registerWindow = Container.Resolve<Registration>();
-            MainWindow mainWindow = Container.Resolve<MainWindow>();
-            mainWindow.Show();
+            loginWindow.Show();
         }
     }
 }

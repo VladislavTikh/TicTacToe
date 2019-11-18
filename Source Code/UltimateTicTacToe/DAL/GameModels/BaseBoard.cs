@@ -37,7 +37,11 @@ namespace DAL.GameModels
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            try
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+            catch { }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,8 +28,8 @@ namespace UltimateTicTacToe
 
         public MainWindow()
         {
-            InitializeComponent();
             this.DataContext = MainWindowViewModel;
+            InitializeComponent();
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -41,6 +42,17 @@ namespace UltimateTicTacToe
         {
             ButtonCloseMenu.Visibility = Visibility.Collapsed;
             ButtonOpenMenu.Visibility = Visibility.Visible;
-        }    
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void ButtonFetchar_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        
     }
 }

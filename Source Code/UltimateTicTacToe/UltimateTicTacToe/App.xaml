@@ -37,17 +37,17 @@
                 <Setter Property="Height" Value="55px"/>
                 <Setter Property="Width" Value="55px"/>
                 <Setter Property="FontSize" Value="11px"/>
-                <Setter Property="Margin" Value="0px"/>
+                <Setter Property="Margin" Value="1px"/>
                 <Setter Property="Padding" Value="0px"/>
-                <Setter Property="Background" >
-                    <Setter.Value>
+                <Setter Property="Background" Value="{DynamicResource FooterColorResource}"/>
+                <!--<Setter.Value>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                             <GradientStop Color="#FFFFD190" Offset="0.2"/>
                             <GradientStop Color="DeepSkyBlue" Offset="0.85"/>
                             <GradientStop Color="#FFFFD190" Offset="1"/>
                         </LinearGradientBrush>
-                    </Setter.Value>
-                </Setter>
+                    </Setter.Value>-->
+
             </Style>
 
         </ResourceDictionary>

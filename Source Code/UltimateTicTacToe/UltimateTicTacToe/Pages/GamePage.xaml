@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:UltimateTicTacToe.Pages"
+      xmlns:helpers="clr-namespace:UltimateTicTacToe.Helpers"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GamePage"
@@ -22,22 +24,39 @@
         <DoubleAnimation x:Key="FadeIn" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:4"/>
         <Style x:Key="GridStyle" TargetType="UniformGrid">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding IsBoardPlayed}" Value="False" >
-                    <Setter Property="TextBlock.Text" Value="X"/>
-                    <Setter Property="TextBlock.Foreground" Value="BurlyWood"/>
-
-                    <!--<DataTrigger.EnterActions>
+                <DataTrigger Binding="{Binding IsBoardPlayed}" Value="True" >
+                    <DataTrigger.EnterActions>
                         <BeginStoryboard>
                             <Storyboard>
                                 <StaticResource ResourceKey="FadeOut"/>
                             </Storyboard>
                         </BeginStoryboard>
-                    </DataTrigger.EnterActions>-->
+                    </DataTrigger.EnterActions>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <helpers:GameInfoConverter x:Key="GameConverter"></helpers:GameInfoConverter>
     </Page.Resources>
-    <Grid>
+    <materialDesign:DialogHost BorderBrush="{DynamicResource MaterialDesignDivider}">
+        <materialDesign:DialogHost.DialogContentTemplate>
+            <DataTemplate DataType="GamePageVM">
+            <Grid Width="300" Height="150" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="15">
+                    <materialDesign:PackIcon Kind="{ Binding Path=GameEndIcon}" Foreground="{StaticResource PrimaryHueMidBrush}" Width="50" Height="50"/>
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center" Text="{Binding Path=GameEndText}" Foreground="Gray" Width="200" Margin="15 5" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15">
+                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Margin="4" VerticalAlignment="Center">
+                        Proceed
+                    </Button>
+                    <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}" Click="Restart_Click" Margin="4" VerticalAlignment="Center">
+                        Restart
+                    </Button>
+                </StackPanel>
+            </Grid>
+            </DataTemplate>
+        </materialDesign:DialogHost.DialogContentTemplate>
+        <Grid>
         <StackPanel HorizontalAlignment="Center" Width="600">
             <Grid x:Name="Container">
                 <ItemsControl x:Name="Board" ItemsSource="{Binding Path=GlobalBoard.Boards}">
@@ -59,8 +78,14 @@
                                         <ItemsControl.ItemTemplate>
                                             <DataTemplate>
                                                 <Button Style="{StaticResource CellButton}" Content="{Binding Path=Sign}" 
-                                                        Command="{Binding ElementName=root, Path=DataContext.CellPressCommand}" CommandParameter="{Binding .}"
-                                                />
+                                                        Command="{Binding ElementName=root, Path=DataContext.CellPressCommand}">
+                                                    <Button.CommandParameter>
+                                                        <MultiBinding Converter="{StaticResource GameConverter}">
+                                                            <Binding/>
+                                                            <Binding RelativeSource="{RelativeSource FindAncestor,AncestorType={x:Type Grid}}"/>
+                                                        </MultiBinding>
+                                                    </Button.CommandParameter> 
+                                                </Button> 
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
@@ -72,8 +97,9 @@
             </Grid>
         </StackPanel>
         <StackPanel  HorizontalAlignment="Right" Width="200">
-            <Button Width="100" Margin="0,200,0,0" Content="Restart"></Button>
-        </StackPanel>
+                <Button Width="100" Margin="0,200,0,0" Content="Restart" Click="Restart_Click"></Button>
+            </StackPanel>
     </Grid>
+    </materialDesign:DialogHost>
 </Page>
 

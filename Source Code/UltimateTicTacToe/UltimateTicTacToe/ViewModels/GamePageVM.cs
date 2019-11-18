@@ -1,11 +1,15 @@
-﻿using DAL.Commands;
+﻿using DAL;
+using DAL.Commands;
 using DAL.GameModels;
 using DAL.IService;
+using DAL.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace UltimateTicTacToe.ViewModels
 {
@@ -17,10 +21,24 @@ namespace UltimateTicTacToe.ViewModels
 
         private IGameService _gameService;
 
-        public GamePageVM(IGameService gameService)
+        private IUserService _userService;
+
+        public delegate void GameEndHandler();
+
+        public event GameEndHandler Notify;
+
+        public string GameEndIcon { get; set; }
+
+        public string GameEndText { get; set; }
+
+        public GamePageVM(IGameService gameService, IUserService userService, User user)
         {
             _gameService = gameService;
+            _userService = userService;
+            CurrentUser = user;
         }
+
+        public User CurrentUser { get; set; }
 
         private RelayCommand _cellPressCommand;
         public RelayCommand CellPressCommand
@@ -28,9 +46,11 @@ namespace UltimateTicTacToe.ViewModels
             get
             {
                 return _cellPressCommand ??
-                  (_cellPressCommand = new RelayCommand(obj =>
+                  (_cellPressCommand = new RelayCommand(async obj =>
                   {
-                      var cell = obj as BoardCell;
+                      var values = (object[])obj;
+                      var cell = values[0] as BoardCell;
+                      var grid = values[1] as Grid;
                       var currentTurn = _gameService.ChangeTurn();
                       switch (currentTurn)
                       {
@@ -45,21 +65,34 @@ namespace UltimateTicTacToe.ViewModels
                       }
                       var playedBoard = _gameService.GetPlayedBoard(GlobalBoard, cell);
                       var localOutcome = _gameService.ProcessGameStage(playedBoard, cell);
-                      if(localOutcome != Outcome.Continue)
+                      if (localOutcome != Outcome.Continue)
                       {
-                          _gameService.ProcessGameStage(GlobalBoard,cell);
+                          var text = _gameService.GenerateGameText(localOutcome, false);
+                          AnimationService.AnimateGrid(grid, text);
+                          var globalOutcome = _gameService.ProcessGameStage(GlobalBoard, cell,localOutcome);
+                          if (globalOutcome != Outcome.Continue)
+                          {
+                              GameEndText = _gameService.GenerateGameText(globalOutcome, true);
+                              GameEndIcon = _gameService.GenerateIcon(globalOutcome);
+                              Notify?.Invoke();
+                              _gameService.UpdateUserProfile(CurrentUser, globalOutcome);
+                              await _userService.UpdateUserAsync(CurrentUser);
+                          }
                       }
                       _activeBoard = _gameService.GetActiveBoard(GlobalBoard, cell);
                   },
                   obj =>
                   {
-                      if (obj != null&&_activeBoard!=null)
+                      var values = (object[])obj;
+                      if (values != null && _activeBoard != null)
                       {
-                          if(_activeBoard.IsBoardPlayed)
+                          var cell = values[0] as BoardCell;
+
+                          if (_activeBoard.IsBoardPlayed)
                           {
-                              return (obj as BoardCell).CanSelect;
+                              return cell.CanSelect;
                           }
-                          return (obj as BoardCell).CanSelect && _activeBoard.Cells.Contains(obj);
+                          return cell.CanSelect && _activeBoard.Cells.Contains(cell);
                       }
                       else return true;
                   }));

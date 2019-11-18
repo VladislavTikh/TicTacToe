@@ -17,10 +17,18 @@
       Background="{DynamicResource MaterialDesignPaper}">
     <Grid>
         <StackPanel Margin="0,100,150,50" HorizontalAlignment="Right" Width="600">
-            <TextBlock TextAlignment="Center" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="20" FontFamily="Champagne &amp; Limousines" 
+            <TextBlock TextAlignment="Center" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="20,20,-20,20" FontFamily="Champagne &amp; Limousines" 
                        FontSize="24" TextWrapping="Wrap" Width="600" 
-                       Text="Enjoy your game!"></TextBlock>
-            <ToggleButton Command="{Binding ChangeThemeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Content="saf"></ToggleButton>
+                       Text="You can configure your theme settings here"/>
+            <StackPanel Margin="0,60,0,0" HorizontalAlignment="Center" Height="60" Orientation="Horizontal">
+                <TextBlock Margin="15" TextAlignment="Left" Style="{StaticResource MaterialDesignHeadline5TextBlock}"  FontFamily="Champagne &amp; Limousines" 
+                       FontSize="24" TextWrapping="Wrap" 
+                       Text="MaterialDesign Theme"/>
+                <ToggleButton HorizontalAlignment="Center" Command="{Binding ChangeThemeCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Content="saf"/>
+                <TextBlock Margin="15" HorizontalAlignment="Right" TextAlignment="Right" Style="{StaticResource MaterialDesignHeadline5TextBlock}"  FontFamily="Champagne &amp; Limousines" 
+                       FontSize="24" TextWrapping="Wrap"
+                       Text="Wooden Theme"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>

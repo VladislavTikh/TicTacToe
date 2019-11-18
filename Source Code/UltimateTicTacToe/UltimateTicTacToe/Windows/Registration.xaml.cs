@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using UltimateTicTacToe.ViewModels;
 using Unity;
 
@@ -30,6 +32,19 @@ namespace UltimateTicTacToe
             {
                 ((dynamic)this.DataContext).RepeatPassword = ((PasswordBox)sender).Password;
             }
+        }
+
+        private async void Login_Click(object sender, RoutedEventArgs e)
+        {
+            var loginForm = new Login();
+            await Task.Delay(500);
+            loginForm.Show();
+            this.Close();
+        }
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

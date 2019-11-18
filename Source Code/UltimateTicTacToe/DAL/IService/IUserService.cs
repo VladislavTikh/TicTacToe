@@ -4,8 +4,10 @@ namespace DAL.Service
 {
     public interface IUserService
     {
-        Task<bool> CreateUserAsync(UserDTO userDTO);
+        Task<User> CreateUserAsync(UserDTO userDTO);
 
-        Task<bool> IsUserExistAsync(UserDTO userDTO);
+        Task<User> GetExistingUser(UserDTO userDTO);
+
+        Task<bool> UpdateUserAsync(User user);
     }
 }

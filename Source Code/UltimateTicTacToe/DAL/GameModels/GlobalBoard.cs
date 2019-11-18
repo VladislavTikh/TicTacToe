@@ -22,8 +22,20 @@ namespace DAL.GameModels
             get
             {
                 if (_boards == null)
-                    _boards = new ObservableCollection<LocalBoard>(Enumerable.Range(0, Rows * Columns).Select(i => new LocalBoard()));
+                    _boards = new ObservableCollection<LocalBoard>(Enumerable.Range(0, Rows * Columns).Select(i => new LocalBoard{BoardName="Board+i"}));
                 return _boards;
+            }
+        }
+
+        public override bool IsBoardPlayed
+        {
+            get { return _IsBoardPlayed; }
+            set
+            {
+                _IsBoardPlayed = value;
+                Boards.ToList().ForEach(x => x.IsBoardPlayed = true);
+                OnPropertyChanged();
+
             }
         }
     }

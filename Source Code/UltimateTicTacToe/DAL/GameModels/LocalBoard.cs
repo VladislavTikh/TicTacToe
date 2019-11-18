@@ -7,13 +7,15 @@ using System.Runtime.CompilerServices;
 
 namespace DAL.GameModels
 {
-    public class LocalBoard:BaseBoard,INotifyPropertyChanged
+    public class LocalBoard:BaseBoard
     {
         
         private ObservableCollection<BoardCell> _cells;
 
         public LocalBoard():base()
         {}
+
+        public string BoardName { get; set; }
 
         public ObservableCollection<BoardCell> Cells
         {

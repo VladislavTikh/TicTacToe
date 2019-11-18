@@ -9,33 +9,38 @@ namespace DAL.Models
 {
     public class UserService : IUserService
     {
-        private UserManager UserManager;
+        private UserManager _userManager;
 
         public UserService(UserManager userManager)
         {
-            UserManager = userManager;
+            _userManager = userManager;
         }
 
-        public async Task<bool> CreateUserAsync(UserDTO userDTO)
+        public async Task<User> CreateUserAsync(UserDTO userDTO)
         {
             if (userDTO.Password == userDTO.RepeatPassword &&
-                await IsUserExistAsync(userDTO) == false)
+                await GetExistingUser(userDTO) == null)
             {
                 var newUser = new User
                 {
                     UserName = userDTO.Login,
                 };
-                var result = await UserManager.CreateAsync(newUser, userDTO.Password);
-                return result.Errors.Count() > 0 ? false : true;
+                var result = await _userManager.CreateAsync(newUser, userDTO.Password);
+                return result.Errors.Count() < 1 ? await _userManager.FindAsync(userDTO.Login,userDTO.Password) : null;
             }
-            return false;
+            return null;
         }
 
-        public async Task<bool> IsUserExistAsync(UserDTO userDTO)
+        public async Task<User> GetExistingUser(UserDTO userDTO)
         {
-            var user = await UserManager.FindAsync(userDTO.Login, userDTO.Password);
-            return user != null ? true : false;
+            var user = await _userManager.FindAsync(userDTO.Login, userDTO.Password);
+            return user;
         }
 
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            var identity= await _userManager.UpdateAsync(user);
+            return identity.Succeeded;
+        }
     }
 }

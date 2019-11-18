@@ -11,13 +11,17 @@ namespace UltimateTicTacToe.Validators
         public PasswordValidationRule()
         {
             MaximumLength = 20;
-            MinimumLength = 3;
+            MinimumLength = 6;
             ForbiddenSymbols = new char[]
             {'!','@','#','$','%','^','&','+','=','*'};
         }
         public bool Validate(string password, out ICollection<string> validationErrors)
         {
             validationErrors = new List<string>();
+            if (string.IsNullOrEmpty(password))
+            {
+                validationErrors.Add($"Password cannot be empty");
+            }
             if (password.Length < MinimumLength
                 || password.Length > MaximumLength)
             {

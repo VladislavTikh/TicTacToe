@@ -13,16 +13,15 @@ namespace UltimateTicTacToe.ViewModels
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
-        public MainWindowVM()
+        public MainWindowVM(User user)
         {
-            CurrentUser = new User { UserName="Uladzislau", Wins = 10, Winrate = 70, Loses = 15 };
+            CurrentUser = user;
             Pages = new List<PageVM>
             {
                 new PageVM{PageName="Rules", PageIcon="Pencil", Page=new RulesPage()},
-                new PageVM{PageName="Profile", PageIcon="Pencil", Page=new Profile(CurrentUser)},
-                new PageVM{PageName="Theme Settings", PageIcon="Pencil", Page=new ThemeSettingsPage()},
-                new PageVM{PageName="Game Stage", PageIcon="Pencil", Page=new GamePage()},
-
+                new PageVM{PageName="Profile", PageIcon="Account", Page=new Profile()},
+                new PageVM{PageName="Theme Settings", PageIcon="Settings", Page=new ThemeSettingsPage()},
+                new PageVM{PageName="Game Stage", PageIcon="Application", Page=new GamePage()},
             };
         }
 
@@ -58,15 +57,15 @@ namespace UltimateTicTacToe.ViewModels
         {
             get
             {
-                return _changePageCommand??
+                return _changePageCommand ??
                     (_changePageCommand = new RelayCommand(obj =>
                     {
                         var item = (ListView)obj;
                         var selectedItem = (PageVM)item.SelectedItem;
                         CurrentPage = selectedItem;
                     }));
-            } 
-           
+            }
+
         }
     }
 }

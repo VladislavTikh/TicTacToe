@@ -12,7 +12,7 @@
         WindowStyle="None" 
         FontFamily="Segoe UI Emoji">
     <Grid>
-        <Rectangle Height="280" VerticalAlignment="Top">
+        <Rectangle MouseDown="Rectangle_MouseDown" Height="280" VerticalAlignment="Top">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF2281D1"/>
@@ -74,7 +74,7 @@
         </Grid>
         <Button Width="150" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,105" Content="LOGIN" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=LoginWindow}"/>
         <Button Content="Create new account" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="60" BorderThickness="0" Background="Transparent" Foreground="DarkGray" Cursor="Hand" Click="CreateAcc_Click"/>
-        <Button Content="Skip authorization" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" BorderThickness="0" Background="Transparent" Foreground="DimGray" Cursor="Hand"/>
-        <Image Source="Assets/home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"/>
+        <Button Content="Skip authorization" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="30" BorderThickness="0" Background="Transparent" Foreground="DimGray" Cursor="Hand" Click="Unauthorized_Click"/>
+        <Image Source="/Assets/home.png" Width="100" Height="100" VerticalAlignment="Top" Margin="30"/>
     </Grid>
 </Window>

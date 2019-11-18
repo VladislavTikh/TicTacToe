@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using DAL;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using UltimateTicTacToe.ViewModels;
 using Unity;
 
@@ -30,11 +33,27 @@ namespace UltimateTicTacToe
             }
         }
 
-        private void CreateAcc_Click(object sender, RoutedEventArgs e)
+        private async void CreateAcc_Click(object sender, RoutedEventArgs e)
         {
             var registerForm = new Registration();
+            await Task.Delay(500);
             registerForm.Show();
             this.Close();
+        }
+
+        private async void Unauthorized_Click(object sender, RoutedEventArgs e)
+        {
+            var user = new User();
+            App.Container.RegisterInstance(user);
+            var mainWindow = new MainWindow();
+            await Task.Delay(500);
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

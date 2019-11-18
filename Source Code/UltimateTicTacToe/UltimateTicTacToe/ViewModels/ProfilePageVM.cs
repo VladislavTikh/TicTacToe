@@ -22,5 +22,7 @@ namespace UltimateTicTacToe.ViewModels
 
         public string GitHubProfile { get; set; }
 
+        public string CurrentTime { get => DateTime.Now.ToString(); }
+
     }
 }

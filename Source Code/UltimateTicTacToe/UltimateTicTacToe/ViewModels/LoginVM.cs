@@ -5,8 +5,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using UltimateTicTacToe.Validators;
+using Unity;
 
 namespace UltimateTicTacToe.ViewModels
 {
@@ -62,8 +64,10 @@ namespace UltimateTicTacToe.ViewModels
                           Password = Password,
                           RepeatPassword = null
                       };
-                      if (await _service.IsUserExistAsync(userDTO))
+                      var user = await _service.GetExistingUser(userDTO);
+                      if(user != null)
                       {
+                          App.Container.RegisterInstance(user);
                           var mainWindow = new MainWindow();
                           mainWindow.Show();
                           (obj as Login).Close();
@@ -76,7 +80,7 @@ namespace UltimateTicTacToe.ViewModels
                   },
                   new Func<object,bool>(x=>
                   {
-                      return !HasErrors;
+                      return !HasErrors&&(!string.IsNullOrEmpty(Login) && !string.IsNullOrEmpty(Password));
                   })));
             }
         }
@@ -90,11 +94,14 @@ namespace UltimateTicTacToe.ViewModels
 
         public IEnumerable GetErrors(string propertyName)
         {
-            if (string.IsNullOrEmpty(propertyName)
-                || !_validationErrors.ContainsKey(propertyName))
-                return null;
-
-            return _validationErrors[propertyName];
+            try
+            {
+                if (string.IsNullOrEmpty(propertyName)
+                    || !_validationErrors.ContainsKey(propertyName))
+                    return null;
+            }
+            catch { }
+                return _validationErrors[propertyName];
         }
 
         public bool HasErrors

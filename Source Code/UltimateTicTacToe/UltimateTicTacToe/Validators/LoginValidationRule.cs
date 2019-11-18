@@ -20,7 +20,12 @@ namespace UltimateTicTacToe.Validators
         }
         public bool Validate(string login, out ICollection<string> validationErrors)
         {
+            
             validationErrors = new List<string>();
+            if (string.IsNullOrEmpty(login))
+            {
+                validationErrors.Add($"Login cannot be empty");
+            }
             if (login.Length < MinimumLength
                 || login.Length > MaximumLength)
             {
