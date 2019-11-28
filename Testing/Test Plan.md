@@ -2,11 +2,11 @@
  ### Сontent
   1. [Introduction](#1)
   2. [Test Objects](#2)
-  3. [Risks](#4)
-  4. [Testing aspects](#5)<br>
-  5. [Test approach](#6)
-  6. [Presentation of results](#7)
-  7. [Conclusion](#8)
+  3. [Risks](#3)
+  4. [Testing aspects](#4)<br>
+  5. [Test approach](#5)
+  6. [Presentation of results](#6)
+  7. [Conclusion](#7)
   <a name="1"></a>
  ## 1. Introduction
 Content of this document describes test plan desktop-application "Ultimate Tic-Tac-Toe". Purpose of testing - ensuring in application functionality according to SRS.
