@@ -8,10 +8,10 @@
 |5. Win the game|You have 3 global marks in a row|Output message displayed with text "You won".Possible to choose next step.| Output message displayed with text "You won" | + |
 |6. Draw the game|Noone has 3 global marks in a row.No more cells availiable|Output message displayed with text "Draw".
 Possible to choose next step.| Output message displayed with text "Draw". | + |
-|6. Review the game rules|Press "Rules" button in main window|Opening a window with text instructions for the game|Opening a window with text instructions for the game | + |
-|7. View user profile|Press "Profile" button in main window|Opening a window with amount of wins/loses/winrate| Opening a window with amount of wins/loses/winrate | + |
-|8. Start second in a row|In opened dialog host when game ends press button "Restart"|After pressing restart button field should become availiable again with all cells empty.| After pressing restart button field should become availiable again with all cells empty. | + |
-|9. Close the app|Press "Exit" icon in the right left corner of main window|Application closes. All windows are closed| Application closes. All windows are closed | + |
+|7. Review the game rules|Press "Rules" button in main window|Opening a window with text instructions for the game|Opening a window with text instructions for the game | + |
+|8. View user profile|Press "Profile" button in main window|Opening a window with amount of wins/loses/winrate| Opening a window with amount of wins/loses/winrate | + |
+|9. Start second in a row|In opened dialog host when game ends press button "Restart"|After pressing restart button field should become availiable again with all cells empty.| After pressing restart button field should become availiable again with all cells empty. | + |
+|10. Close the app|Press "Exit" icon in the right left corner of main window|Application closes. All windows are closed| Application closes. All windows are closed | + |
 
 
 
