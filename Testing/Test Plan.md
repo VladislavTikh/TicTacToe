@@ -93,7 +93,7 @@ For the testing of the application you need to manualy ensure every test case.
 
 <a name="6"></a>
 ## 6. Presentation of results
-Results of testing are displayed in [document](https://github.com/VladislavTikh/TicTacToe/blob/master/Testing/Test%20results.md).
+Results of testing are displayed in [document](https://github.com/VladislavTikh/TicTacToe/blob/master/Testing/Test%20Results.md).
 
 <a name="7"></a>
 ## 7. Conclusion
