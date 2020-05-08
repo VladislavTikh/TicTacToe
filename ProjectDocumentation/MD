@@ -1,0 +1,108 @@
+# Project Requirments
+
+# Content
+1 [Intro](#intro)  
+1.1 [Description](#description)  
+2 [User Requirements](#user_requirements)  
+2.1 [Software Interfaces](#programming_interface)   
+2.2 [User Specification](#user_specifications)  
+3 [System Requirments](#system_requirements)  
+3.1 [Functional Requirements](#functional_requirements)  
+3.2 [Non-Functional Requirements](#non-functional_requirements)  
+3.2.1 [Quality Attributes](#quality_attributes)  
+3.2.2 [Restrictions](#restrictions)  
+
+<a name="intro"/>
+
+ ## 1 Introduction
+ 
+ Basic functional and non-functional requirements of Quize web-service are presented in this document. You can also learn about restrictions and general purpose of the project from the document.
+ 
+ <a name="description"/>
+
+ ### 1.1 Description
+ Our Web Service offers it's users to participate in online quizes. There are numerous spheres where you can check your knowledge and have fun with other people.
+
+ <!-- Данный проект представляет собой бесконечные квизы на каждые темы. 
+В нашем проекте реалиизованны тематические квизы, которые происходят следующим образом: 
+1) Пользователи выбирают тематический квиз, который им инетерен
+2) Далее на страницке дропаются вопросы, на которые все пользователи, проходящие данный квиз, должны отвечать на один вопрос
+3) Если один пользователей ответил правильно, то дропается следующий вопрос
+4) Если никто из пользователей не может ответит на вопрос, затем автоматически (через минуту) дропается следующйи вопрос -->
+
+<a name="user_requirements"/>
+
+ ## 2 User Requirments
+
+<a name="programming_interface"/>
+
+ ### 2.1 Software Interfaces
+
+The core project code base was developed using Python language. Django framework was used for backend implementation. It provides a lot of out of the box solutions to speed up regular development. PostgreSQL database is used to store user data. Standart Django ORM used to increase development speed and abstract from the database relational represenation. HTML\CSS\JS stack was used for frontend development.
+
+<a name="user_interface"/>
+
+ ### 2.2 User Characteristics
+
+Web application Quize considers all age range as it's target group. It will suit all people that are interested in intelectually pastime. People that are looking for new acquantancies can find something for them as well.
+
+<a name="system_requirements"/>
+
+ ## 3 System Requirements
+
+<a name="functional_requirements"/>
+
+ ### 3.1 Functional requirements
+
+ Unauthorized user is provided with following options:
+
+ | Function | Requirements | 
+|:---|:---|
+| Review "About" page | When you click "About" tab you will be provieded with general overview of the product. |
+| Quiz participation | It's possible to participate in all quizes on equal terms with exception that no reward would be provided for the right answers. |
+| Profile overview | Click on any person nickname in chat to review his personal account |
+| In-Game Communication| In-Game chat is presented across the application. Write any messages and it would be seen by other users |
+| Themed quizes| List of all availiable quizes is presented in "Quiz" tab. Choose any theme to start participating |
+
+Authorized user will gain following abilities:
+
+ | Function | Requirements | 
+|:---|:---|
+| User Subscription | Navigate to any personal account. Click "Subscribe" button at the page. Now you are able to review his profile anytime |
+| Purchase customizations | Navigate to your profile. You are able to exchange your points (earn them answering quizes) into custom icons/statuses |
+| Login | When you click "Login" with valid data you are authentificated under your credentials. |
+| Registration | When you click "Register" tab with valid data new account with persional data is created in database.|
+
+Administrator are able to perform following actions:
+
+ | Function | Requirements | 
+|:---|:---|
+| Create new quiz | Click "Create new quiz" button in navigation panel. Enter it's name and confirm |
+| Add new question to existing quiz | Click "Add question" button in navigation panel. Enter the question and quiz it refers to and confirm |
+| Replenish balance | Navigate to user's account and enter required sum to replenish
+
+<a name="non-functional_requirements"/>
+
+ ### 3.2 Non-Functional requirements
+
+<a name="quality_attributes"/>
+
+ #### 3.2.1 Quality attributes
+
+__3.2.1.1 Security reuirements__
+
+All user's passwords are stored in encrypted state as hash and couldn't extracted in original form.
+
+ __3.2.1.2 Reliability requirements__
+
+ Web application should respond to all announced requirements and provide data safety. It should correctly process unhandled situation and stay stable despity any user actions.
+
+ __3.2.1.3 Usability requirements__
+
+<a name="restrictions"/>
+ 
+ #### 3.2.2 Restrictions
+
+User should have Chrome browser or IE version 9 and higher
+
+<a name="analogues"/>
